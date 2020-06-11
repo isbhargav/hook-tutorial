@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
+import { useEmp } from './useEmp'
 
 const App = () => {
   const [count, setCount] = useState(10);
-  const [employee, setEmployee] = useState({ name: 'Bhargav', age: 24 })
+  const [employee, handleEmpInfoChange] = useEmp({ name: 'Bhargav', age: 24 })
 
-  const handleEmpInfoChange = (e) => {
-    //Persist the valu
-    const name = [e.target.name];
-    const value = e.target.value;
-    setEmployee(s => ({ ...s, [name]: value }))
-  }
+
 
   return (
     <>
