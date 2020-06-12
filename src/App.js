@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useEmp } from './useEmp'
 import Hello from './Hello'
+import { RandomFact } from './RandomFact'
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 const App = () => {
   const [count, setCount] = useState(10);
+  const [num, setNum] = useState(getRandomInt(10));
   const [showHello, setHello] = useState(true);
   const [employee, handleEmpInfoChange] = useEmp({ name: 'Bhargav', age: 24 });
   useEffect(() => {
@@ -33,6 +39,10 @@ const App = () => {
         <p>{employee.name}</p>
         <p>{employee.age}</p>
       </div >
+      <div>
+        <button onClick={() => setNum(getRandomInt(100))}>Get Random fact</button>
+        <RandomFact value={num}></RandomFact>
+      </div>
     </>
   );
 }
