@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useEmp } from './useEmp'
 import Hello from './Hello'
 import { RandomFact } from './RandomFact'
+import { LoginForm } from './Components/useLoginForrm'
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
 const App = () => {
-  const [count, setCount] = useState(10);
-  const [num, setNum] = useState(getRandomInt(10));
+  const [count, setCount] = useState(() => localStorage.getItem('count') ? parseInt(localStorage.getItem('count')) : 0);
+  const [num, setNum] = useState(getRandomInt(100));
   const [showHello, setHello] = useState(true);
   const [employee, handleEmpInfoChange] = useEmp({ name: 'Bhargav', age: 24 });
   useEffect(() => {
@@ -17,6 +18,7 @@ const App = () => {
 
     return () => {
       console.log('unmount');
+      localStorage.setItem('count', count)
     }
   });
   useEffect(() => {
@@ -42,6 +44,11 @@ const App = () => {
       <div>
         <button onClick={() => setNum(getRandomInt(100))}>Get Random fact</button>
         <RandomFact value={num}></RandomFact>
+      </div>
+      <div>
+        <LoginForm>
+
+        </LoginForm>
       </div>
     </>
   );
