@@ -45,7 +45,8 @@ const App = () => {
         <button onClick={() => setNum(getRandomInt(100))}>Get Random fact</button>
         <RandomFact value={num}></RandomFact>
       </div>
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+
         <LoginForm>
 
         </LoginForm>
